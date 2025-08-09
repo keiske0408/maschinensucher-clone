@@ -1,18 +1,18 @@
-<script setup>
-
-</script>
+<script setup></script>
 
 <template>
-<header class="bg-white shadow-md">
+  <header class="bg-white shadow-md">
     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
       <!-- Logo -->
-      <a href="/" class="text-2xl font-bold text-blue-700">Maschinensucher</a>
+      <a href="/" class="text-2xl font-bold text-blue-700"
+        >Maschinensucher test</a
+      >
 
       <!-- Search -->
       <div class="flex border rounded overflow-hidden">
-        <input 
-          type="text" 
-          placeholder="Search machines..." 
+        <input
+          type="text"
+          placeholder="Search machines..."
           class="px-4 py-2 outline-none"
         />
         <button class="bg-blue-600 text-white px-4 hover:bg-blue-700">
@@ -29,6 +29,4 @@
   </header>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
