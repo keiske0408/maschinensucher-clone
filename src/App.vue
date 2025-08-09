@@ -1,11 +1,16 @@
 <script setup>
-import CategoryDropdown from "./components/CategoryDropdown.vue";
 import Header from "./components/Header.vue";
+import Footer from "./components/Footer.vue";
+
+import MarketplaceandCategories from "./views/MarketplaceandCategories.vue";
+import CategoryRelevance from "./components/CategoryRelevance.vue";
 </script>
 
 <template>
   <Header />
-  <CategoryDropdown msg="Vite + Vue" />
+  <MarketplaceandCategories />
+  <CategoryRelevance />
+  <Footer />
 </template>
 
 <style scoped></style>
