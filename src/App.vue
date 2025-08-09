@@ -1,11 +1,11 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import CategoryDropdown from "./components/CategoryDropdown.vue";
+import Header from "./components/Header.vue";
 </script>
 
 <template>
- 
-  <HelloWorld msg="Vite + Vue" />
+  <Header />
+  <CategoryDropdown msg="Vite + Vue" />
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
