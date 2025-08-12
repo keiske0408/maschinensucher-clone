@@ -4,12 +4,15 @@ import Footer from "./components/Footer.vue";
 
 import MarketplaceandCategories from "./views/MarketplaceandCategories.vue";
 import CategoryRelevance from "./components/CategoryRelevance.vue";
+import AuctionContainer from "./components/AuctionContainer.vue";
 </script>
 
 <template>
   <Header />
   <MarketplaceandCategories />
   <CategoryRelevance />
+  <AuctionContainer />
+
   <Footer />
 </template>
 
