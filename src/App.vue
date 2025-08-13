@@ -1,19 +1,14 @@
 <script setup>
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
-
-import MarketplaceandCategories from "./views/MarketplaceandCategories.vue";
-import CategoryRelevance from "./components/CategoryRelevance.vue";
 import AuctionContainer from "./components/AuctionContainer.vue";
+import ProductTitle from "./components/ProductTitle.vue";
 </script>
 
 <template>
   <Header />
-  <MarketplaceandCategories />
-  <CategoryRelevance />
-  <AuctionContainer />
-
+  <ProductTitle />
+  <!-- Pass widthClass as a prop to control width, or omit for default -->
+  <AuctionContainer widthClass="w-full" />
   <Footer />
 </template>
-
-<style scoped></style>
