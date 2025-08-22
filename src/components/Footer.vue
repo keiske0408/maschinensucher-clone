@@ -464,6 +464,7 @@
 footer {
   height: 100vh;
   width: 100vw;
+  background-color: #515150;
 }
 
 .footer-sponsoring {
