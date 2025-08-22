@@ -462,8 +462,8 @@
 
 <style scoped>
 footer {
-  height: 936.781px;
-  width: 1860px;
+  height: 100vh;
+  width: 100vw;
 }
 
 .footer-sponsoring {
