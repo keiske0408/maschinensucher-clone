@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white mt-4">
+  <div class="bg-white mt-2 max-w-7xl mx-auto">
     <div class="flex flex-col md:flex-row md:items-center md:justify-between">
       <div class="container mx-auto">
         <div class="flex flex-wrap">
