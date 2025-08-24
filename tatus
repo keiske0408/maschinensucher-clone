@@ -1,0 +1,10 @@
+[33mab0f672[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{0}: pull --ff --recurse-submodules --progress origin: Fast-forward
+[33mb5bcb0d[m HEAD@{1}: reset: moving to HEAD
+[33mb5bcb0d[m HEAD@{2}: pull --ff --recurse-submodules --progress origin: Fast-forward
+[33m1fa2761[m HEAD@{3}: pull --ff --recurse-submodules --progress origin: Fast-forward
+[33m977caf6[m HEAD@{4}: commit: 80% Done
+[33m63ef494[m HEAD@{5}: commit: Auction Maket Done!
+[33m2e55f1c[m HEAD@{6}: commit: MarketplaceCategory
+[33mdd4cb02[m HEAD@{7}: commit: Folder Management
+[33m5030595[m HEAD@{8}: commit: Testing
+[33md37bb80[m HEAD@{9}: clone: from https://github.com/keiske0408/maschinensucher-clone.git
