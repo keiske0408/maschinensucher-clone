@@ -108,14 +108,14 @@
         >
           <div class="text-center lg:text-left">
             <img
-              src="https://via.placeholder.com/300x150/ffffff/000000?text=AUKTION"
+              src="https://cdn.machineseeker.com/img/frontend/main/homepage/auction/auction_seal_b_ms_de.svg?v=1745316046"
               alt="Auktion"
               class="mx-auto lg:mx-0 mb-4"
             />
           </div>
           <div class="text-center lg:text-left">
             <img
-              src="https://via.placeholder.com/250x60/ffffff/000000?text=AUCTION+LOGO"
+              src="https://cdn.machineseeker.com/img/frontend/main/homepage/auction/auction_logo_b_ms_de.svg?v=1745316046"
               alt="Auction Logo"
               class="mx-auto lg:mx-0 mb-4"
             />

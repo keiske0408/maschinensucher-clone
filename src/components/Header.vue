@@ -1,42 +1,48 @@
 <template>
   <section id="header" class="bg-white shadow-sm">
-    <div class="container mx-auto px-4 py-4">
-      <div class="flex items-center justify-between gap-4">
-        
+    <div class="mx-auto px-4 py-1">
+      <div class="container-fluid flex items-center justify-between gap-4">
         <!-- Logo Section -->
-        <section id="header-logo" class="flex-shrink-0">
-          <a href="/" class="block">
-            <img 
-              id="logo-img" 
-              src="https://cdn.machineseeker.com/img/frontend/main/logo/ms_logo_de.svg?v=1739437402" 
-              class="h-14 w-auto block" 
+        <section id="header-logo" class="flex-shrink-0 relative">
+          <a href="/" class="block relative">
+            <img
+              id="logo-img"
+              src="https://cdn.machineseeker.com/img/frontend/main/logo/ms_logo_de.svg?v=1739437402"
+              class="h-14 w-auto block"
               alt="Maschinensucher"
+            />
+            <!-- Make this absolutely positioned inside the parent -->
+            <div
+              class="md:block absolute top-8 left-15 mt-1 text-blue-900 text-sm font-medium"
             >
-            <div class="hidden md:block mt-1 text-blue-600 text-sm font-medium">
               Deutschland
             </div>
           </a>
         </section>
 
         <!-- Search Section -->
-        <section id="header-searchbar" class="flex items-center gap-4 flex-1 max-w-4xl">
-          
+        <section>
           <!-- Category Dropdown -->
           <div class="hidden md:block">
-            <button 
-              type="button" 
+            <button
+              type="button"
               @click="toggleCategoryDropdown"
               class="btn border border-gray-300 px-4 py-2 rounded-md hover:bg-gray-50 transition-colors duration-200 whitespace-nowrap relative"
               :class="{ 'bg-gray-50': showCategoryDropdown }"
             >
-              <span class="hidden xl:inline-block 2xl:inline-block">Kategorien</span>
+              <span class="hidden xl:inline-block 2xl:inline-block"
+                >Kategorien</span
+              >
               <i class="fas fa-chevron-down ml-2"></i>
-              
+
               <!-- Category Dropdown Menu -->
-              <div v-show="showCategoryDropdown" class="absolute top-full left-0 mt-1 w-64 bg-white border border-gray-200 rounded-md shadow-lg z-50">
+              <div
+                v-show="showCategoryDropdown"
+                class="absolute top-full left-0 mt-1 w-64 bg-white border border-gray-200 rounded-md shadow-lg z-50"
+              >
                 <div class="py-2">
-                  <a 
-                    v-for="category in categoryDropdownItems" 
+                  <a
+                    v-for="category in categoryDropdownItems"
                     :key="category.slug"
                     :href="category.url"
                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
@@ -47,32 +53,40 @@
               </div>
             </button>
           </div>
-
+        </section>
+        <section
+          id="header-searchbar"
+          class="flex items-center gap-4 flex-1 max-w"
+        >
           <!-- Search Form -->
-          <form id="search-form" class="flex-1 relative" @submit.prevent="handleSearch">
+          <form
+            id="search-form"
+            class="flex-1 relative"
+            @submit.prevent="handleSearch"
+          >
             <div class="flex">
-              <input 
-                type="text" 
+              <input
+                type="text"
                 v-model="searchQuery"
                 @input="handleSearchInput"
                 @focus="showSearchHistory = true"
                 class="flex-1 border border-gray-300 rounded-l-md px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
                 placeholder="Suchen nach Bezeichnung, Hersteller, Modell, ..."
-              >
-              
+              />
+
               <!-- Clear Button -->
-              <button 
-                v-if="searchQuery" 
-                type="button" 
+              <button
+                v-if="searchQuery"
+                type="button"
                 @click="clearSearch"
                 class="border-t border-b border-gray-300 px-3 py-2 text-gray-400 hover:text-gray-600 bg-gray-50"
               >
                 <i class="fas fa-times"></i>
               </button>
-              
+
               <!-- Search Button -->
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 class="bg-blue-600 text-white px-6 py-2 rounded-r-md hover:bg-blue-700 transition-colors duration-200"
               >
                 <i class="fas fa-search mr-2"></i>
@@ -81,12 +95,17 @@
             </div>
 
             <!-- Search History/Instant Search -->
-            <div v-show="showSearchHistory && searchHistory.length > 0" 
-                 class="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-md shadow-lg z-40 max-h-64 overflow-y-auto">
+            <div
+              v-show="showSearchHistory && searchHistory.length > 0"
+              class="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-md shadow-lg z-40 max-h-64 overflow-y-auto"
+            >
               <ul class="py-2">
-                <li v-for="item in searchHistory" :key="item" 
-                    @click="selectSearchHistory(item)"
-                    class="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
+                <li
+                  v-for="item in searchHistory"
+                  :key="item"
+                  @click="selectSearchHistory(item)"
+                  class="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                >
                   {{ item }}
                 </li>
               </ul>
@@ -95,23 +114,22 @@
         </section>
 
         <!-- CTA and Navigation -->
-        <section class="flex items-center gap-4">
-          
+        <section>
           <!-- Sell CTA Button -->
-          <a 
-            href="/tariffs/" 
-            class="bg-orange-500 hover:bg-orange-600 text-white font-bold px-4 py-2 rounded-md transition-colors duration-200 whitespace-nowrap"
+          <a
+            href="/tariffs/"
+            class="bg-green-700 hover:bg-green-800 text-white font-semibold px-4 py-2 rounded-md transition-colors duration-200 whitespace-nowrap"
           >
             <span class="hidden 2xl:inline">Maschine verkaufen</span>
             <span class="2xl:hidden">Verkaufen</span>
           </a>
-
+        </section>
+        <section class="flex items-center gap-4">
           <!-- Navigation Icons -->
           <div class="flex items-center gap-4">
-            
             <!-- Favorites -->
-            <a 
-              href="/main/favorites" 
+            <a
+              href="/main/favorites"
               class="hidden md:flex flex-col items-center text-gray-700 hover:text-blue-600 transition-colors duration-200"
             >
               <i class="fas fa-star text-lg"></i>
@@ -121,8 +139,8 @@
             </a>
 
             <!-- Login -->
-            <a 
-              href="/account/security/login" 
+            <a
+              href="/account/security/login"
               class="hidden lg:flex flex-col items-center text-gray-700 hover:text-blue-600 transition-colors duration-200"
             >
               <i class="fas fa-user text-lg"></i>
@@ -130,28 +148,37 @@
             </a>
 
             <!-- Language Selector -->
-            <button 
+            <button
               @click="toggleLanguageSelector"
               class="flex flex-col items-center text-gray-700 hover:text-blue-600 transition-colors duration-200 relative"
             >
-              <img 
-                src="https://cdn.machineseeker.com/img/frontend/main/flags/blank24.png?v=1739437402" 
+              <img
+                src="https://cdn.machineseeker.com/img/frontend/main/flags/blank24.png?v=1739437402"
                 class="w-6 h-4 bg-contain bg-no-repeat"
-                style="background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAyNCAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjE2IiBmaWxsPSIjREQwMDJEIi8+CjxyZWN0IHk9IjUuMzMzMzMiIHdpZHRoPSIyNCIgaGVpZ2h0PSI1LjMzMzMzIiBmaWxsPSIjRkZDRTAwIi8+CjxyZWN0IHk9IjEwLjY2NjciIHdpZHRoPSIyNCIgaGVpZ2h0PSI1LjMzMzMzIiBmaWxsPSIjMDAwMDAwIi8+Cjwvc3ZnPgo=')"
+                style="
+                  background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAyNCAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjE2IiBmaWxsPSIjREQwMDJEIi8+CjxyZWN0IHk9IjUuMzMzMzMiIHdpZHRoPSIyNCIgaGVpZ2h0PSI1LjMzMzMzIiBmaWxsPSIjRkZDRTAwIi8+CjxyZWN0IHk9IjEwLjY2NjciIHdpZHRoPSIyNCIgaGVpZ2h0PSI1LjMzMzMzIiBmaWxsPSIjMDAwMDAwIi8+Cjwvc3ZnPgo=');
+                "
                 alt="Deutsch"
-              >
+              />
               <small class="hidden lg:block mt-1 text-xs">Sprache</small>
-              
+
               <!-- Language Dropdown -->
-              <div v-show="showLanguageSelector" class="absolute top-full right-0 mt-1 w-40 bg-white border border-gray-200 rounded-md shadow-lg z-50">
+              <div
+                v-show="showLanguageSelector"
+                class="absolute top-full right-0 mt-1 w-40 bg-white border border-gray-200 rounded-md shadow-lg z-50"
+              >
                 <div class="py-2">
-                  <button 
-                    v-for="language in languages" 
+                  <button
+                    v-for="language in languages"
                     :key="language.code"
                     @click="selectLanguage(language)"
                     class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                   >
-                    <img :src="language.flag" :alt="language.name" class="inline-block w-4 h-3 mr-2">
+                    <img
+                      :src="language.flag"
+                      :alt="language.name"
+                      class="inline-block w-4 h-3 mr-2"
+                    />
                     {{ language.name }}
                   </button>
                 </div>
@@ -159,17 +186,23 @@
             </button>
 
             <!-- Mobile Menu -->
-            <button 
+            <button
               @click="toggleMobileMenu"
               class="flex flex-col items-center text-gray-700 hover:text-blue-600 transition-colors duration-200 relative"
             >
               <div class="w-6 h-4 flex flex-col justify-between">
-                <span class="block h-0.5 w-full bg-current transition-transform duration-200" 
-                      :class="{ 'rotate-45 translate-y-1.5': showMobileMenu }"></span>
-                <span class="block h-0.5 w-full bg-current transition-opacity duration-200"
-                      :class="{ 'opacity-0': showMobileMenu }"></span>
-                <span class="block h-0.5 w-full bg-current transition-transform duration-200"
-                      :class="{ '-rotate-45 -translate-y-1.5': showMobileMenu }"></span>
+                <span
+                  class="block h-0.5 w-full bg-current transition-transform duration-200"
+                  :class="{ 'rotate-45 translate-y-1.5': showMobileMenu }"
+                ></span>
+                <span
+                  class="block h-0.5 w-full bg-current transition-opacity duration-200"
+                  :class="{ 'opacity-0': showMobileMenu }"
+                ></span>
+                <span
+                  class="block h-0.5 w-full bg-current transition-transform duration-200"
+                  :class="{ '-rotate-45 -translate-y-1.5': showMobileMenu }"
+                ></span>
               </div>
               <small class="hidden lg:block mt-1 text-xs">Menü</small>
             </button>
@@ -178,83 +211,16 @@
       </div>
     </div>
 
-    <!-- Mobile Menu Overlay -->
-    <div v-show="showMobileMenu" 
-         @click="closeMobileMenu"
-         class="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"></div>
-
     <!-- Mobile Menu -->
-    <nav v-show="showMobileMenu" 
-         class="fixed top-0 right-0 h-full w-80 max-w-full bg-white shadow-xl z-50 transform transition-transform duration-300">
-      <div class="p-6">
-        <div class="flex justify-between items-center mb-6">
-          <h2 class="text-xl font-bold">Menü</h2>
-          <button @click="closeMobileMenu" class="text-gray-500 hover:text-gray-700">
-            <i class="fas fa-times text-xl"></i>
-          </button>
-        </div>
-        
-        <ul class="space-y-4">
-          <li>
-            <div class="flex items-center justify-between cursor-pointer" @click="toggleSubmenu('search')">
-              <span class="flex items-center">
-                <i class="fas fa-search mr-3"></i>
-                Suchen
-              </span>
-              <i class="fas fa-chevron-down transition-transform duration-200" 
-                 :class="{ 'rotate-180': activeSubmenu === 'search' }"></i>
-            </div>
-            <ul v-show="activeSubmenu === 'search'" class="ml-6 mt-2 space-y-2">
-              <li><a href="/1/ci-1" class="block py-1 text-gray-600 hover:text-blue-600">Kleinanzeigen</a></li>
-              <li><a href="/auctions/" class="block py-1 text-gray-600 hover:text-blue-600">Auktionen</a></li>
-              <li><a href="/main/search/index" class="block py-1 text-gray-600 hover:text-blue-600">Detailsuche</a></li>
-              <li><a href="/Haendler" class="block py-1 text-gray-600 hover:text-blue-600">Händler</a></li>
-              <li><a @click="openInquiry" class="block py-1 text-gray-600 hover:text-blue-600 cursor-pointer">Gesuch senden</a></li>
-            </ul>
-          </li>
-          
-          <li>
-            <div class="flex items-center justify-between cursor-pointer" @click="toggleSubmenu('offer')">
-              <span class="flex items-center">
-                <i class="fas fa-tags mr-3"></i>
-                Anbieten
-              </span>
-              <i class="fas fa-chevron-down transition-transform duration-200" 
-                 :class="{ 'rotate-180': activeSubmenu === 'offer' }"></i>
-            </div>
-            <ul v-show="activeSubmenu === 'offer'" class="ml-6 mt-2 space-y-2">
-              <li><a href="/tariffs/" class="block py-1 text-gray-600 hover:text-blue-600">Maschinen inserieren</a></li>
-              <li><a href="https://service.maschinensucher.de/auktionen-angebot/" class="block py-1 text-gray-600 hover:text-blue-600">Auktionen veröffentlichen</a></li>
-              <li><a href="/tariffs/" class="block py-1 text-gray-600 hover:text-blue-600">Preise & Tarife</a></li>
-              <li><a href="https://service.maschinensucher.de/kaufinteressenten-erreichen/" class="block py-1 text-gray-600 hover:text-blue-600">Werben auf Maschinensucher</a></li>
-            </ul>
-          </li>
-          
-          <li>
-            <a href="/main/favorites/index" class="flex items-center">
-              <i class="fas fa-star mr-3"></i>
-              Merkliste
-            </a>
-          </li>
-          
-          <li>
-            <a href="/account/security/login" class="flex items-center">
-              <i class="fas fa-user mr-3"></i>
-              Login & Registrierung
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
   </section>
 </template>
 
 <script>
 export default {
-  name: 'HeaderComponent',
+  name: "HeaderComponent",
   data() {
     return {
-      searchQuery: '',
+      searchQuery: "",
       showSearchHistory: false,
       showCategoryDropdown: false,
       showLanguageSelector: false,
@@ -262,121 +228,97 @@ export default {
       activeSubmenu: null,
       favoriteCount: 0,
       searchHistory: [
-        'CNC Maschine',
-        'Drehbank',
-        'Fräsmaschine',
-        'Gabelstapler'
+        "CNC Maschine",
+        "Drehbank",
+        "Fräsmaschine",
+        "Gabelstapler",
       ],
       categoryDropdownItems: [
-        { name: 'Holzbearbeitungsmaschinen', slug: 'holz', url: '/Holzbearbeitungsmaschinen/ci-3' },
-        { name: 'Metallbearbeitungsmaschinen', slug: 'metall', url: '/Werkzeugmaschinen-Metallbearbeitungsmaschinen/ci-2' },
-        { name: 'Baumaschinen', slug: 'bau', url: '/Baumaschinen/ci-8' },
-        { name: 'Stapler & Flurförderzeuge', slug: 'stapler', url: '/Stapler/ci-42' },
-        { name: 'Automatisierungstechnik', slug: 'auto', url: '/Automatisierungstechnik/ci-5' }
+        {
+          name: "Holzbearbeitungsmaschinen",
+          slug: "holz",
+          url: "/Holzbearbeitungsmaschinen/ci-3",
+        },
+        {
+          name: "Metallbearbeitungsmaschinen",
+          slug: "metall",
+          url: "/Werkzeugmaschinen-Metallbearbeitungsmaschinen/ci-2",
+        },
+        { name: "Baumaschinen", slug: "bau", url: "/Baumaschinen/ci-8" },
+        {
+          name: "Stapler & Flurförderzeuge",
+          slug: "stapler",
+          url: "/Stapler/ci-42",
+        },
+        {
+          name: "Automatisierungstechnik",
+          slug: "auto",
+          url: "/Automatisierungstechnik/ci-5",
+        },
       ],
       languages: [
-        { code: 'de', name: 'Deutsch', flag: 'https://flagcdn.com/w20/de.png' },
-        { code: 'en', name: 'English', flag: 'https://flagcdn.com/w20/gb.png' },
-        { code: 'fr', name: 'Français', flag: 'https://flagcdn.com/w20/fr.png' },
-        { code: 'es', name: 'Español', flag: 'https://flagcdn.com/w20/es.png' }
-      ]
-    }
+        { code: "de", name: "Deutsch", flag: "https://flagcdn.com/w20/de.png" },
+        { code: "en", name: "English", flag: "https://flagcdn.com/w20/gb.png" },
+        {
+          code: "fr",
+          name: "Français",
+          flag: "https://flagcdn.com/w20/fr.png",
+        },
+        { code: "es", name: "Español", flag: "https://flagcdn.com/w20/es.png" },
+      ],
+    };
   },
   mounted() {
     // Close dropdowns when clicking outside
-    document.addEventListener('click', this.handleOutsideClick)
+    document.addEventListener("click", this.handleOutsideClick);
   },
   beforeDestroy() {
-    document.removeEventListener('click', this.handleOutsideClick)
+    document.removeEventListener("click", this.handleOutsideClick);
   },
   methods: {
     handleSearch() {
       if (this.searchQuery.trim()) {
         // Add to search history
         if (!this.searchHistory.includes(this.searchQuery)) {
-          this.searchHistory.unshift(this.searchQuery)
-          this.searchHistory = this.searchHistory.slice(0, 5) // Keep only 5 items
+          this.searchHistory.unshift(this.searchQuery);
+          this.searchHistory = this.searchHistory.slice(0, 5); // Keep only 5 items
         }
         // Perform search
-        window.location.href = `/main/search/index?search-word=${encodeURIComponent(this.searchQuery)}`
+        window.location.href = `/main/search/index?search-word=${encodeURIComponent(
+          this.searchQuery
+        )}`;
       }
     },
-    
-    handleSearchInput() {
-      // Handle instant search logic here
-      this.showSearchHistory = this.searchQuery.length > 0
-    },
-    
-    clearSearch() {
-      this.searchQuery = ''
-      this.showSearchHistory = false
-    },
-    
-    selectSearchHistory(item) {
-      this.searchQuery = item
-      this.showSearchHistory = false
-    },
-    
+
     toggleCategoryDropdown() {
-      this.showCategoryDropdown = !this.showCategoryDropdown
-      this.showLanguageSelector = false
+      this.showCategoryDropdown = !this.showCategoryDropdown;
+      this.showLanguageSelector = false;
     },
-    
+
     toggleLanguageSelector() {
-      this.showLanguageSelector = !this.showLanguageSelector
-      this.showCategoryDropdown = false
+      this.showLanguageSelector = !this.showLanguageSelector;
+      this.showCategoryDropdown = false;
     },
-    
+
     selectLanguage(language) {
       // Handle language selection
-      console.log('Selected language:', language)
-      this.showLanguageSelector = false
+      console.log("Selected language:", language);
+      this.showLanguageSelector = false;
     },
-    
-    toggleMobileMenu() {
-      this.showMobileMenu = !this.showMobileMenu
-      if (this.showMobileMenu) {
-        document.body.style.overflow = 'hidden'
-      } else {
-        document.body.style.overflow = ''
-        this.activeSubmenu = null
-      }
-    },
-    
-    closeMobileMenu() {
-      this.showMobileMenu = false
-      document.body.style.overflow = ''
-      this.activeSubmenu = null
-    },
-    
-    toggleSubmenu(submenu) {
-      this.activeSubmenu = this.activeSubmenu === submenu ? null : submenu
-    },
-    
+
     openInquiry() {
       // Handle inquiry modal opening
-      console.log('Open inquiry modal')
+      console.log("Open inquiry modal");
     },
-    
+
     handleOutsideClick(event) {
       // Close dropdowns when clicking outside
-      if (!event.target.closest('#header')) {
-        this.showCategoryDropdown = false
-        this.showLanguageSelector = false
-        this.showSearchHistory = false
+      if (!event.target.closest("#header")) {
+        this.showCategoryDropdown = false;
+        this.showLanguageSelector = false;
+        this.showSearchHistory = false;
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
-
-<style scoped>
-.btn {
-  @apply inline-flex items-center justify-center;
-}
-
-/* Custom styles for the mobile menu animation */
-.transform {
-  transition: transform 0.3s ease-in-out;
-}
-</style>
