@@ -11,15 +11,15 @@
           url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3');
       "
     >
-      <div class="container mx-auto px-4 py-16 md:py-24">
+      <div class="container mx-auto px-4 py-8">
         <div class="text-center">
-          <h1 class="text-4xl md:text-6xl font-bold text-white mb-8">
+          <h1 class="text-5xl font-bold text-white mb-4">
             Der führende Marktplatz für Gebrauchtmaschinen
           </h1>
         </div>
 
         <!-- Stats Section -->
-        <div class="hidden xl:flex justify-center mt-12">
+        <div class="hidden xl:flex justify-center mt-8">
           <div class="flex flex-wrap justify-center gap-8 max-w-4xl">
             <div class="text-center text-white">
               <i class="fas fa-check text-blue-400 mr-2"></i>
@@ -45,9 +45,7 @@
     <!-- Recently Viewed Items -->
     <section class="py-8 bg-gray-100">
       <div class="container mx-auto px-4">
-        <h2 class="text-2xl font-bold mb-6">
-          Ihre zuletzt angesehenen Artikel
-        </h2>
+        <h2 class="text-xl font-bold mb-6">Ihre zuletzt angesehenen Artikel</h2>
 
         <div
           class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4"
@@ -70,6 +68,12 @@
                 {{ item.auctionStatus }}
               </div>
             </div>
+            <div
+              class="bg-orange-700 text-center font-light text-white text-sm"
+            >
+              9h 50min 41
+            </div>
+
             <div class="p-3">
               <p class="text-xs text-gray-500 mb-1">{{ item.category }}</p>
               <h3 class="font-semibold text-sm mb-2 line-clamp-2">
@@ -137,10 +141,11 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-          <div
+          <a
             v-for="category in topCategories"
             :key="category.id"
             class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+            href="/MarketPlace"
           >
             <div class="relative">
               <img
@@ -178,6 +183,34 @@
                 ></span>
               </div>
             </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="container-fluid order-6 lg:order-2 bg-white">
+      <div class="row justify-center pt-4">
+        <div id="ofni-wrapper" class="col col-sm-10 mx-auto max-w-screen-lg">
+          <div id="ofniCarousel" class="flex justify-center items-center">
+            <div v-for="(ad, index) in ads" :key="index" class="px-3">
+              <a :href="ad.href" target="_blank" rel="nofollow" class="block">
+                <img
+                  :src="ad.img"
+                  :alt="ad.alt"
+                  class="mb-4 w-[200px] h-[125px] object-contain"
+                  loading="lazy"
+                />
+              </a>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <div class="row p-4 flex justify-center">
+            <button
+              class="mx-auto btn btn-light border border-gray-400 flex items-center gap-2 px-4 py-2 rounded"
+            >
+              <span>Hier werben</span>
+            </button>
           </div>
         </div>
       </div>
@@ -205,10 +238,9 @@
           </div>
           <div>
             <button
-              class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-4 px-8 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105"
+              class="bg-green-700 hover:bg-green-800 text-white text-xl font-bold py-4 px-8 rounded-lg shadow-lg transition-all duration-300"
             >
               MASCHINE VERKAUFEN
-              <i class="fas fa-chevron-right ml-2"></i>
             </button>
           </div>
         </div>
@@ -222,22 +254,22 @@
           <h2 class="text-3xl font-bold">Alle Kategorien</h2>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-24">
           <div
             v-for="section in allCategories"
             :key="section.title"
             class="space-y-4"
           >
-            <h3 class="text-2xl font-bold border-b pb-2">
+            <h3 class="text-2xl font-semibold border-b pb-1 m-0">
               {{ section.title }}
             </h3>
             <div
               v-for="category in section.categories"
               :key="category.name"
-              class="flex justify-between items-center py-2 border-b border-gray-200 hover:bg-gray-50 px-2 -mx-2 cursor-pointer transition-colors duration-200"
+              class="flex justify-between items-center py-2 border-b border-gray-200 hover:bg-gray-50 px-1 cursor-pointer transition-colors duration-200 m-0"
             >
               <h4 class="font-semibold">{{ category.name }}</h4>
-              <span class="bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded">
+              <span class="bg-gray-300 text-gray-800 text-xs px-3 py-1 rounded">
                 {{ category.count.toLocaleString() }}
               </span>
             </div>
@@ -259,7 +291,7 @@ export default {
           title: "Seitenstapler EFQ 50 16-70",
           category: "Seitenstapler",
           image:
-            "https://images.unsplash.com/photo-1586953983040-4d30a0c74f9d?ixlib=rb-4.0.3&w=300&h=200&fit=crop",
+            "https://cdn1.nbaanalysis.net/uploads/16/2025/08/GettyImages-2187951579-941x627.jpg",
           type: "Auktion",
           isAuction: true,
           auctionStatus: "Auktion beendet",
@@ -310,6 +342,7 @@ export default {
           auctionStatus: "Auktion beendet",
         },
       ],
+
       topCategories: [
         {
           id: 1,
@@ -330,7 +363,7 @@ export default {
           name: "Holzbearbeitungsmaschinen",
           count: 12732,
           image:
-            "https://images.unsplash.com/photo-1586953983040-4d30a0c74f9d?ixlib=rb-4.0.3&w=500&h=200&fit=crop",
+            "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&w=500&h=200&fit=crop",
           subcategories: [
             { name: "Sägen für Holz", count: 1920 },
             { name: "Hobelmaschinen", count: 1276 },
@@ -354,6 +387,7 @@ export default {
           ],
         },
       ],
+
       allCategories: [
         {
           title: "A - K",
@@ -415,16 +449,41 @@ export default {
           ],
         },
       ],
+
+      // ✅ Added Ads Array
+      ads: [
+        {
+          href: "",
+          img: "https://cdn.machineseeker.com/data/ofni/29.png?v=1485180841",
+          alt: "Harich Werkzeuge Maschinen GmbH",
+        },
+        {
+          href: "",
+          img: "https://cdn.machineseeker.com/data/ofni/4598.png?v=...",
+          alt: "Ad 2",
+        },
+        {
+          href: "",
+          img: "https://cdn.machineseeker.com/data/ofni/2235.png?v=...",
+          alt: "Ad 3",
+        },
+        {
+          href: "",
+          img: "https://cdn.machineseeker.com/data/ofni/555.png?v=1485181198",
+          alt: "Ad 3",
+        },
+        {
+          href: "",
+          img: "https://cdn.machineseeker.com/data/ofni/2007.png?v=1573034286",
+          alt: "Ad 3",
+        },
+        {
+          href: "",
+          img: "https://cdn.machineseeker.com/data/ofni/4226.png?v=1693064249",
+          alt: "Ad 3",
+        },
+      ],
     };
   },
 };
 </script>
-
-<style scoped>
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-</style>
